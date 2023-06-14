@@ -1,0 +1,27 @@
+# Idea / PyCharm
+*.idea*
+
+# files from the mac
+.DS_Store
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.class
+*.pyc
+
+# Project dependant
+data/videos/output/*.mp4
+data/videos/*.mp4
+data/results/*.h5
+data/results/*.csv
+models/*
+
+# Data
+*.jpg
+*.mpge
+*.zip
+*.7z
+*.mp4
+
+# Models
