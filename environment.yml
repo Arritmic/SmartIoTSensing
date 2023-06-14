@@ -1,0 +1,18 @@
+name: sMartIoT
+channels:
+  - conda-forge
+dependencies:
+  - python=3.8
+  - pip
+  - numpy
+  - scikit-learn
+  - pandas
+  - pip:
+      - imutils
+      - dload
+      - tables
+      - opencv-python
+      - matplotlib
+
+
+
