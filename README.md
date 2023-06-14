@@ -6,6 +6,7 @@
 
 Project related to the workshop "Smart Internet of Things (IoT) wireless connectivity in 5G and Beyond"
 
+![cover](data/images/topology.png)
 
 
 ## Installation
@@ -23,10 +24,18 @@ For the installation of the _requirements_ and _environment_ run the next script
 * Run: `./install.sh`
 
 If you are under Windows, use directly the _environment.yml_ file to install the 
-dependencies.
-
+dependencies (e.g. using conda environment manager: `conda env create -f environment.yml`)
 
 <a name="myfootnote1">1</a>: *Not tested regularly on Windows. Fully tested in Linux Ubuntu O.S.*
+
+
+## Usage
+By default, the application read/record in CSV format the data in: `/data/`
+
+Please, check the input arguments options in the _main_ functions of each python script or running
+`python ./scripts/smartiot_data_analysis.py`
+
+![input_arguments](data/images/visualization.png)
 
 ## TODO list
  - [ ] Add configuration files with parameters 
@@ -41,9 +50,9 @@ dependencies.
 ## Authors and acknowledgment
 This framework is created by the group99999 of the Center for Machine Vision and Signal Analysis (CMVS) and Center of the Wireless Communication (CWC) at the University of Oulu for the UBISS2023 Summer school:
  * Constantino Álvarez Casado (constantino.alvarezcasado [at] oulu.fi)
- * Gabriel Martins de Jesus
- * Rafael Valente da Silva
- * Prasoon Raghuwanshi
+ * Gabriel Martins de Jesus (email)
+ * Rafael Valente da Silva (email)
+ * Prasoon Raghuwanshi (email)
 
 
 ## Useful Resources and links of some parts of the code:
