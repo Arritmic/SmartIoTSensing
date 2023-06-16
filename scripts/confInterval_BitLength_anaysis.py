@@ -6,6 +6,17 @@ import sys
 from scipy import stats
 import math
 
+
+def timer(f):
+    def wrapper(*args, **kw):
+        t_start = time.time()
+        result = f(*args, **kw)
+        t_end = time.time()
+        return result, t_end - t_start
+
+    return wrapper
+
+
 def get_bit_length_integer(input_value):
     # Compute bit length of an integer
     integer_bit_length = input_value.item().bit_length()
@@ -58,6 +69,7 @@ def compute_confidence_interval_scipy(time_series, confidence_level=0.95):
     return lower_bound, upper_bound
 
 
+@timer
 def compute_confidence_interval(time_series, confidence=0.95):
     """
     Compute the confidence interval of a time series.
@@ -76,7 +88,6 @@ def compute_confidence_interval(time_series, confidence=0.95):
     lower_bound = mean - margin_of_error
     upper_bound = mean + margin_of_error
     return lower_bound, upper_bound
-
 
 
 def load_data(file_path):
@@ -124,6 +135,10 @@ def main():
     print(f"[INFO] Size of light values: {len(light)}")
     print(f"[INFO] Size of light TS: {len(light_ts)}")
 
+    # Test Timer
+    [low, up], time_this_funct = compute_confidence_interval(np.array(temperature).astype(np.float32))
+
+
     if compute_statistics:
         print("\n ********** STATISTICS BENCHMARK: TEMPERATURE   ***************")
         print(f"[TEMP RESULTS] Confidence Interval at 95% of temperature values using float16: {compute_confidence_interval(np.array(temperature).astype(np.float16))}")
@@ -153,8 +168,8 @@ def main():
         print(f"[LIGHT INFO] Average Light using float32: {np.mean(np.array(light).astype(np.float32))}")
 
         print("\n ********** BIT LENGTH BENCHMARK: AIR QUALITY   ***************")
-        print(f"[AIR QUALITY INFO] Average bitlength of air quality values using int8: {get_bit_length_avg_array_int(np.array(air_quality).astype(np.int8))}")
-        print(f"[LIGHT INFO] Average Air Quality using int8: {np.mean(np.array(air_quality).astype(np.int8))}")
+        print(f"[AIR QUALITY INFO] Average bitlength of air quality values using uint8: {get_bit_length_avg_array_int(np.array(air_quality).astype(np.uint16))}")
+        print(f"[LIGHT INFO] Average Air Quality using uint8: {np.mean(np.array(air_quality).astype(np.uint16))}")
         print(f"[AIR QUALITY INFO] Average bitlength of air quality values using int16: {get_bit_length_avg_array_int(np.array(air_quality).astype(np.int16))}")
         print(f"[LIGHT INFO] Average Air Quality using int16: {np.mean(np.array(air_quality).astype(np.int16))}")
         print(f"[AIR QUALITY INFO] Average bitlength of air quality values using int64: {get_bit_length_avg_array_int(np.array(air_quality).astype(np.int64))}")
